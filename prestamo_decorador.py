@@ -35,3 +35,11 @@ class PrestamoConEntregaDomicilio(PrestamoDecorador):
         return self.prestamo_envuelto.calcular_multa() + self.COSTO_DOMICILIO
     def __str__(self):
         return f"{self.usuario} - {self.libro.titulo} ({self.libro.tipo()}) - {self.dias_atraso} días de atraso - Bs {self.calcular_multa()} (+ entrega a domicilio)"
+
+
+class PrestamoConDescuentoEstudiante(PrestamoDecorador):
+    DESCUENTO = 0.5
+    def calcular_multa(self):
+        return self.prestamo_envuelto.calcular_multa() * self.DESCUENTO
+    def __str__(self):
+        return f"{self.usuario} - {self.libro.titulo} ({self.libro.tipo()}) - {self.dias_atraso} días de atraso - Bs {self.calcular_multa()} (descuento estudiante)"

@@ -1,6 +1,10 @@
 from gestor_prestamos import GestorPrestamos
 from prestamo import Prestamo
-from prestamo_decorador import PrestamoConRenovacion, PrestamoConEntregaDomicilio
+from prestamo_decorador import (
+    PrestamoConRenovacion, 
+    PrestamoConEntregaDomicilio, 
+    PrestamoConDescuentoEstudiante
+)
 from notificaciones import notificar_biblioteca, notificar_usuario
 from canales_prestamo import catalogar_mostrador, catalogar_en_linea
 
@@ -14,11 +18,13 @@ libro2 = catalogar_en_linea("Digital", "1984", 1.0)
 p1 = Prestamo(libro1, 5, usuario="Marco")
 p2 = PrestamoConRenovacion(Prestamo(libro2, 3, usuario="Sofia"))
 p3 = PrestamoConEntregaDomicilio(Prestamo(libro1, 2, usuario="Elena"))
+p4 = PrestamoConDescuentoEstudiante(Prestamo(libro2, 4, usuario="Carlos"))
 
 print("Registrando préstamos...")
 gestor.registrar(p1)
 gestor.registrar(p2)
 gestor.registrar(p3)
+gestor.registrar(p4)
 
 print("\nListado de préstamos:")
 for p in gestor.prestamos:
